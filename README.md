@@ -73,9 +73,16 @@ python steg_forensics.py <image_path>
 
 .
 ├── steganography_lsb.py       # LSB-based GUI steganography
+
 ├── steganography_naive.py     # Naive pixel-based steganography
+
 ├── steg_forensics.py          # LSB + entropy-based detection
+
+
 ├── requirements.txt           # Required Python packages
+
 ├── README.md                  # Project documentation
+
 ├── encryptedImage_LSB.png     # Example encrypted image
+
 ├── *.jpg / *.png              # Sample input images

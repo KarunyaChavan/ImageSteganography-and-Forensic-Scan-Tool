@@ -1,87 +1,81 @@
-# Secure Data Hiding in Image Using Steganography
+# Image Steganography Project
 
-## 📌 Project Overview
-This project implements **image steganography**, a technique used to hide secret messages inside an image without noticeable changes. The approach ensures secure communication by embedding the message at the pixel level and allowing retrieval using a passcode-based decryption mechanism. The application features a **GUI-based interface** built using Tkinter, making it user-friendly and accessible.
+Welcome to the **Image Steganography** project! This project explores techniques to hide secret messages inside images, combining security, usability, and a touch of digital magic. It features both **naive pixel-based embedding** and **Least Significant Bit (LSB) steganography**.
 
-## 🚀 Features
-✅ **Image-based Steganography:** Hides messages within images using pixel modifications.
+---
 
-✅ **GUI Interface:** Easy-to-use interface for selecting images, encrypting messages, and decrypting them securely.
+## Features
 
-✅ **Passcode Protection:** Ensures that only authorized users can decrypt the hidden message.
+### LSB Steganography (`steganography_lsb.py`)
+- Hides messages in the **least significant bits** of image pixels, minimizing visual distortion.
+- Password-protected messages using hashed verification.
+- GUI built with **Tkinter** for easy interaction:
+  - Select an image
+  - Enter a secret message
+  - Set a password (with optional visibility toggle)
+  - Encrypt and decrypt with a single click
+  - Automatic closure of the window after completion
 
-✅ **Minimal Image Distortion:** Embeds the message while preserving the original image quality.
+### Naive Steganography (`steganography_naive.py`)
+- Directly modifies pixel values to embed message characters.
+- Provides a simple GUI for experimentation and educational purposes.
+- Less secure than LSB method, but helps understand the basics of steganography.
 
-✅ **Error Handling:** Includes input validation and exception handling for a seamless experience.
+### Forensics Tool (`steg_forensics.py`)
+- Detects hidden messages in images using:
+  - Magic headers
+  - LSB analysis
+  - Entropy calculations of LSBs
+- Provides quick feedback on whether an image may contain hidden data.
 
-✅ **Support for PNG & JPG:** Works with common image formats for greater usability.
+---
 
-## 🛠️ Technologies Used
-- **Programming Language:** Python
-- **Libraries:** OpenCV, Tkinter, NumPy
-- **Encryption Method:** Pixel-based data encoding
-- **Platform Compatibility:** Windows, Linux, MacOS
+## How it Works
 
-## 📂 Project Structure
-```
-├── steganography.py  # Main application file
-├── README.md         # Project documentation
-├── drugSpec.jpg      # Sample input image
-```
+- **LSB Steganography:** The secret message is converted to binary and hidden in the least significant bit of each pixel. A password is hashed and stored securely within the image for authentication.
+- **Decryption:** The LSBs are read from the image to reconstruct the message. Only the correct password will reveal the message fully, ensuring security.
+- **Naive Method:** Each character of the message is directly embedded into pixel values sequentially. This method is less secure and may include extra characters after the message.
 
-## 🔧 Installation & Setup
-1. **Clone the Repository**
-```sh
-   git clone https://github.com/yourusername/Secure-Image-Steganography.git
-   cd Secure-Image-Steganography
-```
+---
 
-2. **Install Dependencies**
-```sh
-   pip install opencv
-```
-```sh
-   pip install numpy
-```
-```sh
-   pip install tkinter
-```
+## Setup Instructions
 
+Follow these steps to set up and run this project locally:
 
-3. **Run the Application**
-```sh
-   python steganography.py
+### 1. Clone the repository
+```bash
+git clone <repository_url>
+cd Steganography-Edunet_Cybersecurity-Internship-2025
 ```
 
-## 📸 Usage Guide
-### **1️⃣ Encrypt a Message**
-1. Run the Python Application/Code.
-2. Click on "Browse" to select an image.
-3. Enter the secret message and passcode.
-4. Click on "Encrypt & Save" to embed the message.
-5. The encrypted image is saved as `encryptedImage.png`.
+### 2. Create a Conda environment with Python 3.11
+```bash
+conda create -n steganography python=3.11 -y
+conda activate steganography
+```
 
-### **2️⃣ Decrypt a Message** (Image must be encrypted already)
-1. Run the Python Application/Code.
-2. Click on "Browse" and select the encrypted image.
-3. Enter the correct passcode used during encryption.
-4. Click on "Decrypt" to retrieve the hidden message.
+### 3. Install dependencies
+```bash
+pip install -r requirements.txt
+```
 
-## 🔒 Security Considerations
-- The encryption relies on modifying pixel values, ensuring **low detectability**.
-- **Passcode protection** prevents unauthorized access.
-- For enhanced security, future versions can integrate **AES encryption** before embedding the message.
+### 4. Run the LSB Steganography GUI
+```bash
+python steganography_lsb.py
+```
 
-## 📈 Future Enhancements
-🔹 **AI-Powered Steganography:** Implement machine learning models for more robust encoding.
-🔹 **Support for Video & Audio:** Extend functionality beyond images.
-🔹 **Cloud Storage Integration:** Store and retrieve encrypted images securely.
-🔹 **Mobile App Development:** Implement steganography on iOS/Android.
+### 5. Forensics scan:
+```bash
+python steg_forensics.py <image_path>
+```
 
-## 👨‍💻 Contribution Guidelines
-We welcome contributions to enhance this project. Follow these steps:
-1. Fork the repository.
-2. Create a new branch for your feature.
-3. Commit your changes.
-4. Submit a pull request.
+## Project Structure
 
+.
+├── steganography_lsb.py       # LSB-based GUI steganography
+├── steganography_naive.py     # Naive pixel-based steganography
+├── steg_forensics.py          # LSB + entropy-based detection
+├── requirements.txt           # Required Python packages
+├── README.md                  # Project documentation
+├── encryptedImage_LSB.png     # Example encrypted image
+├── *.jpg / *.png              # Sample input images

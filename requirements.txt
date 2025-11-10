@@ -1,0 +1,10 @@
+numpy>=1.19.0
+opencv-python>=4.5.5
+Pillow>=9.0.0  # the Python Imaging Library (PIL) used for image preview in the GUI
+pycryptodome
+
+# Notes:
+# - hashlib, os, sys, platform are part of the Python standard library and
+#   do not need to be installed via pip.
+# - If you only need to run headless image processing on a server/container,
+#   consider `opencv-python-headless` instead of `opencv-python`.
